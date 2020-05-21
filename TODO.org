@@ -1,0 +1,3 @@
+- [ ] Search files for contents
+- [ ] Add matches to datastructure
+- [ ] Search DS in listener
