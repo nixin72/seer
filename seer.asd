@@ -9,5 +9,8 @@
                :uiop)
   :components ((:module "src"
 		:serial t
-		:components ((:file "main"))
-		)))
+		:components ((:file "errors")
+			     (:file "cli-args")
+			     (:file "index-project")
+			     (:file "search-files")))
+	       (:file "main")))
