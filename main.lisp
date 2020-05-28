@@ -1,9 +1,10 @@
 (defparameter *version* "0.1.0")
 (defparameter *dir* (namestring (uiop:getcwd)))
 (defparameter *delimiter* (uiop:directory-separator-for-host))
-(defparameter *files* (make-array 0 :adjustable t))
+(defparameter *files* nil)
 (defparameter *ignore-dirs* #(".git" "node_modules" "bin"))
-(defparameter *ignore-files* #(".exe" ".App" ".png" ".jpg" ".jpeg" "."))
+(defparameter *ignore-files*
+  (util:string-split (uiop:read-file-string "src/ignore/files.txt") #\newline))
 
 (defun main ()
   (let* ((options (parse-cli-args))
@@ -29,9 +30,11 @@
 
 (defun start-your-engines ()
   (index-directory *dir*)
-  (rl:register-hook :event #'event-handler)
-  (rl:bind-keyseq "\\C-c" #'exit)
-  (rl:read-key))
+  (setf *input* (format nil "~A~C" *input* #\a))
+  (check-for-changes)
+  (setf *input* (format nil "~A~C" *input* #\r))
+  (check-for-changes)
+  )
 
 (defun dir-not-found (dir-name)
   (throw-error (format nil "directory \"~A\" does not exist" dir-name)))
