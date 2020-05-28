@@ -1,5 +1,6 @@
 build:
-	sbcl --load seer.asd \
+	sbcl --non-interactive 					\
+	     --load seer.asd 					\
 	     --eval "(ql:quickload :seer)" 			\
 	     --eval "(sb-ext:save-lisp-and-die #p\"seer\"	\
 			:executable t 				\
