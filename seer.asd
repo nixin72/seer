@@ -5,12 +5,18 @@
   :license "MIT"
   :version "0.1"
   :source-control (:git "git@github.com:nixin72/seer.git")
-  :depends-on (:cl-readline
-               :uiop)
-  :components ((:module "src"
-		:serial t
-		:components ((:file "errors")
-			     (:file "cli-args")
-			     (:file "index-project")
-			     (:file "search-files")))
-	       (:file "main")))
+  :depends-on (:cl-readline :uiop)
+  :components
+  ((:module "src"
+    :serial t
+    :components
+    ((:module "lib"
+      :serial t
+      :components
+      ((:file "util")
+       (:file "bst")))
+     (:file "errors")
+     (:file "cli-args")
+     (:file "index-project")
+     (:file "search-files")))
+   (:file "main")))
