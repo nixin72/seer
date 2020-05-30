@@ -3,7 +3,10 @@
   (:export #:string-split
            #:file-size
            #:file=
-           #:file<))
+           #:file<
+           #:ignore-file-extensions
+           #:file-extension
+           ))
 
 (in-package :util)
 
@@ -28,3 +31,15 @@
   (:name #'path/to/file' :size size-of-file)
   "
   (< (getf file-1 :size) (getf file-2 :size)))
+
+(defun ignore-file-extensions ()
+  (let ((bst:*bst-copy-function* #'copy-seq)
+        (bst:*bst-equal-p-function* #'string=)
+        (bst:*bst-lesser-p-function* #'string<))
+    (bst:bst-from-values
+     (util:string-split
+      (uiop:read-file-string #P"src/ignore/files.txt")
+      #\newline))))
+
+(defun file-extension (filename)
+  (car (last (string-split filename #\.))))
