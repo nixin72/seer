@@ -13,8 +13,8 @@
     ((:module "lib"
       :serial t
       :components
-      ((:file "util")
-       (:file "bst")))
+      ((:file "bst")
+       (:file "util")))
      (:file "errors")
      (:file "cli-args")
      (:file "index-project")
