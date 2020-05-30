@@ -3,8 +3,6 @@
 (defparameter *delimiter* (uiop:directory-separator-for-host))
 (defparameter *files* nil)
 (defparameter *ignore-dirs* #(".git" "node_modules" "bin"))
-(defparameter *ignore-files*
-  (util:string-split (uiop:read-file-string "src/ignore/files.txt") #\newline))
 
 (defun main ()
   (let* ((options (parse-cli-args))
